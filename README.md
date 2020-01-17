@@ -13,7 +13,7 @@ Image2schematic is a software that can convert most pictures (. BMP. Jpg. JPEG. 
 ## 测试 Test
 如果你要用大图像的立体模式，请耐心等待，这需要几分钟或更长的时间。
 
-If you are going to use the bumpy mode with a big image,plase be patient,it will take a few minutes or longer.
+If you are going to use the bumpy mode with a big image,please be patient,it will take a few minutes or longer.
 ![image](http://chuantu.xyz/t6/713/1579273758x2073530529.png)
 ## 参考资料 Reference Resources
 https://minecraft.gamepedia.com/Map_item_format
