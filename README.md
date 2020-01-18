@@ -16,8 +16,7 @@ Image2schematic is a software that can convert most image (.bmp .jpg .jpeg .gif)
 If you are going to use the bumpy mode with a big image,please be patient,it will take a few minutes or longer.
 ![image](https://github.com/Tao0Lu/Image2Schematic/blob/master/ScreenShot.png)
 ## 参考资料 Reference Resources
-https://minecraft.gamepedia.com/Map_item_format
-
-https://en.wikipedia.org/wiki/Ordered_dithering
-
-https://en.wikipedia.org/wiki/Floyd%E2%80%93Steinberg_dithering
+  https://minecraft.gamepedia.com/Map_item_format
+  https://en.wikipedia.org/wiki/Ordered_dithering
+  https://minecraft.gamepedia.com/Schematic_file_format
+  https://en.wikipedia.org/wiki/Floyd%E2%80%93Steinberg_dithering
