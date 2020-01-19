@@ -110,7 +110,7 @@ Begin VB.Form frmMain
       Top             =   0
       Width           =   2655
       Begin VB.Frame Frames 
-         Caption         =   "&Size"
+         Caption         =   "&大小"
          Height          =   1815
          Index           =   2
          Left            =   240
@@ -118,7 +118,7 @@ Begin VB.Form frmMain
          Top             =   120
          Width           =   2175
          Begin VB.CommandButton cmdApplySizing 
-            Caption         =   "&Apply"
+            Caption         =   "&应用"
             Height          =   375
             Left            =   120
             TabIndex        =   9
@@ -142,7 +142,7 @@ Begin VB.Form frmMain
             Width           =   1215
          End
          Begin VB.CheckBox ChkRatio 
-            Caption         =   "&Keep aspect ratio"
+            Caption         =   "&保持宽高比"
             Height          =   255
             Left            =   120
             TabIndex        =   2
@@ -152,61 +152,61 @@ Begin VB.Form frmMain
          End
          Begin VB.Label Labels 
             AutoSize        =   -1  'True
-            Caption         =   "&Width:"
+            Caption         =   "&宽:"
             Height          =   180
             Index           =   5
-            Left            =   240
+            Left            =   360
             TabIndex        =   3
             Top             =   240
-            Width           =   540
+            Width           =   270
          End
          Begin VB.Label Labels 
             AutoSize        =   -1  'True
-            Caption         =   "&Height:"
+            Caption         =   "&高:"
             Height          =   180
             Index           =   6
-            Left            =   240
+            Left            =   360
             TabIndex        =   5
             Top             =   600
-            Width           =   630
+            Width           =   270
          End
       End
    End
    Begin VB.Menu File 
-      Caption         =   "File"
+      Caption         =   "文件"
       Begin VB.Menu OpenFile 
-         Caption         =   "Open"
+         Caption         =   "打开"
       End
       Begin VB.Menu Save 
-         Caption         =   "Save as .schematic"
+         Caption         =   "导出为schematic文件"
       End
       Begin VB.Menu DivingLine 
          Caption         =   "-"
       End
       Begin VB.Menu Exit 
-         Caption         =   "Quit"
+         Caption         =   "退出"
       End
    End
    Begin VB.Menu Preview 
-      Caption         =   "Preview"
+      Caption         =   "预览"
    End
    Begin VB.Menu Setting 
-      Caption         =   "Set"
+      Caption         =   "设置"
       Begin VB.Menu Paletteset 
-         Caption         =   "Paletteset"
-         Begin VB.Menu Mode 
-            Caption         =   "Mode"
+         Caption         =   "调色板设置"
+         Begin VB.Menu Type 
+            Caption         =   "格式"
             Begin VB.Menu Flat 
-               Caption         =   "Flat"
+               Caption         =   "平面"
             End
             Begin VB.Menu Bumpy 
-               Caption         =   "Bumpy"
+               Caption         =   "立体"
             End
          End
          Begin VB.Menu Palette 
-            Caption         =   "Palette"
+            Caption         =   "调色板"
             Begin VB.Menu Wool 
-               Caption         =   "Wool"
+               Caption         =   "羊毛"
                Checked         =   -1  'True
                Enabled         =   0   'False
             End
@@ -214,7 +214,7 @@ Begin VB.Form frmMain
                Caption         =   "-"
             End
             Begin VB.Menu mnuPalette1_7 
-               Caption         =   "Block1.7"
+               Caption         =   "方块1.7"
                Checked         =   -1  'True
                Index           =   0
                Visible         =   0   'False
@@ -223,7 +223,7 @@ Begin VB.Form frmMain
                Caption         =   "-"
             End
             Begin VB.Menu mnuPalette1_8 
-               Caption         =   "Block1.8"
+               Caption         =   "方块1.8"
                Checked         =   -1  'True
                Index           =   0
                Visible         =   0   'False
@@ -232,7 +232,7 @@ Begin VB.Form frmMain
                Caption         =   "-"
             End
             Begin VB.Menu mnuPalette1_10 
-               Caption         =   "Block1.10"
+               Caption         =   "方块1.10"
                Checked         =   -1  'True
                Index           =   0
                Visible         =   0   'False
@@ -241,7 +241,7 @@ Begin VB.Form frmMain
                Caption         =   "-"
             End
             Begin VB.Menu mnuPalette1_12 
-               Caption         =   "Block1.12"
+               Caption         =   "方块1.12"
                Checked         =   -1  'True
                Index           =   0
                Visible         =   0   'False
@@ -249,31 +249,31 @@ Begin VB.Form frmMain
          End
       End
       Begin VB.Menu CaleSet 
-         Caption         =   "CaleSet"
+         Caption         =   "算法设置"
          Begin VB.Menu DG 
-            Caption         =   "Downgrade"
+            Caption         =   "近似颜色"
          End
          Begin VB.Menu OD 
-            Caption         =   "Ordered_Dithering"
+            Caption         =   "矩形抖动"
          End
          Begin VB.Menu FSD 
-            Caption         =   "Floyd_Steinberg_Dithering"
+            Caption         =   "误差扩散"
          End
       End
    End
    Begin VB.Menu About 
-      Caption         =   "About"
+      Caption         =   "关于"
       Begin VB.Menu Image2Schematic 
          Caption         =   "Image2Schematic"
       End
       Begin VB.Menu AA55 
-         Caption         =   "0xAA55 Forum"
+         Caption         =   "0xAA55论坛"
       End
       Begin VB.Menu DivingLine5 
          Caption         =   "-"
       End
       Begin VB.Menu GetHelp 
-         Caption         =   "GetHelp"
+         Caption         =   "获取帮助"
       End
    End
 End
@@ -332,7 +332,7 @@ Private Const OFN_PATHMUSTEXIST = &H800
 Private Const OFN_OVERWRITEPROMPT = &H2
 Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
 
-'Palette related
+'调色板相关
 Private Type RGB32
     R As Byte
     G As Byte
@@ -361,8 +361,8 @@ Private m_MinPalRGB As Color_t
 Private m_MaxPalRGB As Color_t
 Private m_PalMinMaxRGBDiff As Color_t
 Private m_Bumpy() As Long
-Private m_Names() As Long
-Private m_Nbt() As Long
+Private m_Names() As Byte
+Private m_Nbt() As Byte
 Private PaletteCheck() As Boolean
 Private PaletteSetAgain As Boolean
 Private PaletteCount As Long
@@ -432,7 +432,7 @@ m_MaxPalRGB.B = -1
 m_MinPalRGB.R = 256
 m_MinPalRGB.G = 256
 m_MinPalRGB.B = 256
-'Long is faster than Byte, so use Long to store palette copies
+'Long的速度比Byte快，所以用Long存储调色板副本
 Erase m_PaletteColors
 ReDim m_PaletteColors(m_NumColors - 1)
 For I = 0 To m_NumColors - 1
@@ -452,7 +452,7 @@ m_PalMinMaxRGBDiff.R = m_MaxPalRGB.R - m_MinPalRGB.R
 m_PalMinMaxRGBDiff.G = m_MaxPalRGB.G - m_MinPalRGB.G
 m_PalMinMaxRGBDiff.B = m_MaxPalRGB.B - m_MinPalRGB.B
 
-'Find the maximum difference in palette
+'找出调色板最大幅度差
 Dim J As Long
 Dim RN&, GN&, BN&, CD&
 m_RDiff = 0
@@ -852,7 +852,7 @@ m_Names(J + 1) = &HD8
 m_Names(J + 2) = &HD8
 End If
 
-'Make another copy for RGB color
+'生成另一份副本，便于取得RGB颜色
 CopyMemory m_PaletteRGB(0), m_Palette(0), m_NumColors * 4
 CopyMemory m_PaletteBGR(0), m_Palette(0), m_NumColors * 4
 For I = 0 To m_NumColors - 1
@@ -1073,6 +1073,7 @@ m_Palette(J) = RGB(210, 199, 138)
 m_Names(J) = &HD8
 End If
 
+'生成另一份副本，便于取得RGB颜色
 CopyMemory m_PaletteRGB(0), m_Palette(0), m_NumColors * 4
 CopyMemory m_PaletteBGR(0), m_Palette(0), m_NumColors * 4
 For I = 0 To m_NumColors - 1
@@ -1087,7 +1088,7 @@ GetPaletteProperties
 
 End Sub
 
-'Generate Ordered_Dithering
+'生成抖动矩阵
 Private Sub GenDitherMatrix()
 Dim X As Long, Y As Long
 Dim I As Long
@@ -1100,7 +1101,7 @@ For Y = 0 To 15
 Next
 End Sub
 
-'Load image,apply dithering
+'加载图像，应用抖动
 Private Sub Load_Picture(Path As String)
 
 
@@ -1122,7 +1123,7 @@ ApplyDithering
 
 Exit Sub
 ErrHandler:
-MsgBox "Error:Load image failed." & vbCrLf & "(" & Err.Number & ")" & Err.Description, vbExclamation, "Load Image Failed"
+MsgBox "错误：加载图片失败。" & vbCrLf & "(" & Err.Number & ")" & Err.Description, vbExclamation, "加载图片失败"
 End Sub
 
 Private Sub AA55_Click()
@@ -1143,7 +1144,7 @@ NewWidth = Val(txtWidth.Text)
 NewHeight = Val(txtHeight.Text)
 
 If NewWidth = 0 Or NewHeight = 0 Then
-    MsgBox "Error:This size is not supported", vbExclamation, "Cannot apply this size"
+    MsgBox "错误：输入的图片大小无效。", vbExclamation, "不支持此大小"
     Exit Sub
 End If
 
@@ -1209,11 +1210,11 @@ BmpHeight = picImage.ScaleHeight
 
 Dim Z As Long, X As Long
 Dim I&
-Dim ThisPix As Color_t 'Current pixel's color value
+Dim ThisPix As Color_t '当前像素颜色值
 Dim DoAdjustBrightness As Long
 DoAdjustBrightness = 1
 
-'Use VB's scalable drawing
+'用VB自己的缩放绘图
 picImage.Cls
 picImage.PaintPicture picSrc.Picture, 0, 0, picImage.ScaleWidth, picImage.ScaleHeight
 
@@ -1226,12 +1227,12 @@ Erase m_ColorIndices
 ReDim m_ColorIndices(BmpWidth * BmpHeight - 1)
 Dim CIPtr As Long
 
-'Clone original image to own DIB
+'搬运原图到自己的DIB
 BitBlt hTempDC24, 0, 0, BmpWidth, BmpHeight, picImage.hDC, 0, 0, vbSrcCopy
 
 For Z = 0 To picImage.ScaleHeight - 1
     CIPtr = (picImage.ScaleHeight - 1 - Z) * BmpWidth
-    'Clone a line original RGB
+    '复制一行源RGB
     CopyMemory Line24(0), ByVal Ptr24, BmpWidth * 3
     For X = 0 To picImage.ScaleWidth - 1
         ThisPix.R = Line24(X).R
@@ -1245,16 +1246,16 @@ For Z = 0 To picImage.ScaleHeight - 1
         Line24(X).B = m_PaletteColors(I).B
         CIPtr = CIPtr + 1
     Next
-    'Copy index color
+    '复制索引颜色
     CopyMemory ByVal Ptr24, Line24(0), BmpWidth * 3
     
     Ptr24 = Ptr24 + Pitch24
 Next
 
-'Display
+'显示
 BitBlt picImage.hDC, 0, 0, BmpWidth, BmpHeight, hTempDC24, 0, 0, vbSrcCopy
 
-'Delete temp
+'擦屁股
 DeleteDC hTempDC24
 End Sub
 
@@ -1265,11 +1266,11 @@ BmpHeight = picImage.ScaleHeight
 
 Dim Z As Long, X As Long
 Dim R&, G&, B&, I&
-Dim ThisPix As Color_t 'Current pixel's color value
+Dim ThisPix As Color_t '当前像素颜色值
 Dim DoAdjustBrightness As Long
 DoAdjustBrightness = 1
 
-'Use VB's scalable drawing
+'用VB自己的缩放绘图
 picImage.Cls
 picImage.PaintPicture picSrc.Picture, 0, 0, picImage.ScaleWidth, picImage.ScaleHeight
 
@@ -1282,12 +1283,12 @@ Erase m_ColorIndices
 ReDim m_ColorIndices(BmpWidth * BmpHeight - 1)
 Dim CIPtr As Long
 
-'Clone original image to own DIB
+'搬运原图到自己的DIB
 BitBlt hTempDC24, 0, 0, BmpWidth, BmpHeight, picImage.hDC, 0, 0, vbSrcCopy
 
 For Z = 0 To picImage.ScaleHeight - 1
     CIPtr = (picImage.ScaleHeight - 1 - Z) * BmpWidth
-    'Clone a line original RGB
+    '复制一行源RGB
     CopyMemory Line24(0), ByVal Ptr24, BmpWidth * 3
     For X = 0 To picImage.ScaleWidth - 1
         ThisPix.R = Line24(X).R
@@ -1304,16 +1305,16 @@ For Z = 0 To picImage.ScaleHeight - 1
         Line24(X).B = m_PaletteColors(I).B
         CIPtr = CIPtr + 1
     Next
-    'Copy index color
+    '复制索引颜色
     CopyMemory ByVal Ptr24, Line24(0), BmpWidth * 3
     
     Ptr24 = Ptr24 + Pitch24
 Next
 
-'Display
+'显示
 BitBlt picImage.hDC, 0, 0, BmpWidth, BmpHeight, hTempDC24, 0, 0, vbSrcCopy
 
-'Delete temp
+'擦屁股
 DeleteDC hTempDC24
 End Sub
 
@@ -1322,21 +1323,21 @@ Dim BmpWidth As Long, BmpHeight As Long
 BmpWidth = picImage.ScaleWidth
 BmpHeight = picImage.ScaleHeight
 
-Dim ThisPix As Color_t      'Current pixel's color value
-Dim NextPix As Color_t      'Next pixel's Floyd_Steinberg_Dithering's value
-Dim Down3(2) As Color_t     'The value of Floyd_Steinberg_Dithering of the first three pixels of Next line
-Dim LinePix() As Color_t    'Calc a whole row of pixels'Floyd_Steinberg_Dithering's value
-Dim PixErr As Color_t       'Deviation
+Dim ThisPix As Color_t      '当前像素颜色值
+Dim NextPix As Color_t      '下一个像素的误差扩散值
+Dim Down3(2) As Color_t     '下一行三个像素的误差扩散值
+Dim LinePix() As Color_t    '计算好的一整行像素的误差扩散值
+Dim PixErr As Color_t       '误差
 Dim DoAdjustBrightness As Long
 
 Dim LU!, T!
 Dim X&, Z&, I&
 
-'Use VB's scalable drawing
+'用VB自己的缩放绘图
 picImage.Cls
 picImage.PaintPicture picSrc.Picture, 0, 0, picImage.ScaleWidth, picImage.ScaleHeight
 
-'One 8bit is used to save the target data and one 24bit is used to save the source data
+'一个8bit用于存储目标数据，一个24bit用于存储源数据
 Dim hTempDC24 As Long, Ptr24 As Long, Pitch24 As Long, Line24() As RGB24
 hTempDC24 = CreateDIB24(Ptr24, BmpWidth, BmpHeight)
 Pitch24 = CalcPitch(24, BmpWidth)
@@ -1346,29 +1347,29 @@ Erase m_ColorIndices
 ReDim m_ColorIndices(BmpWidth * BmpHeight - 1)
 Dim CIPtr As Long
 
-'Clone original image to own DIB
+'搬运原图到自己的DIB
 BitBlt hTempDC24, 0, 0, BmpWidth, BmpHeight, picImage.hDC, 0, 0, vbSrcCopy
 
 
-'Process image
+'处理图片数据
 ReDim LinePix(picImage.ScaleWidth - 1)
 For Z = 0 To picImage.ScaleHeight - 1
     CIPtr = (picImage.ScaleHeight - 1 - Z) * BmpWidth
-    'Clone a line original RGB
+    '复制一行源RGB
     CopyMemory Line24(0), ByVal Ptr24, BmpWidth * 3
     For X = 0 To picImage.ScaleWidth - 1
-        'The color is used to save RGB channels in 3 bytes, which are divided into 3 long
+        '颜色是用3个字节存储RGB通道的，将其拆开为3个Long
         ThisPix.R = Line24(X).R
         ThisPix.G = Line24(X).G
         ThisPix.B = Line24(X).B
         If DoAdjustBrightness Then AdjustBrightness ThisPix
         
-        'Calc new color values
+        '计算新的颜色值
         ThisPix.R = ThisPix.R + NextPix.R + LinePix(X).R
         ThisPix.G = ThisPix.G + NextPix.G + LinePix(X).G
         ThisPix.B = ThisPix.B + NextPix.B + LinePix(X).B
         
-        'Limit deviation
+        '限定偏差
         If ThisPix.R < 0 Then ThisPix.R = 0
         If ThisPix.G < 0 Then ThisPix.G = 0
         If ThisPix.B < 0 Then ThisPix.B = 0
@@ -1376,20 +1377,20 @@ For Z = 0 To picImage.ScaleHeight - 1
         If ThisPix.G > 255 Then ThisPix.G = 255
         If ThisPix.B > 255 Then ThisPix.B = 255
         
-        'Get palette closest color value
+        '取得调色板最接近颜色值
         I = GetNearestColor(ThisPix.R, ThisPix.G, ThisPix.B)
         
-        'Get the deviation values
+        '取得误差值
         PixErr.R = ThisPix.R - m_PaletteColors(I).R
         PixErr.G = ThisPix.G - m_PaletteColors(I).G
         PixErr.B = ThisPix.B - m_PaletteColors(I).B
         
-        'Right diffusion deviation
+        '向右扩散误差值
         NextPix.R = PixErr.R * 7 \ 16
         NextPix.G = PixErr.G * 7 \ 16
         NextPix.B = PixErr.B * 7 \ 16
         
-        'Spread the deviation value down
+        '然后将误差值向下扩散
         If X >= 1 Then LinePix(X - 1) = Down3(0)
         Down3(0).R = Down3(1).R + PixErr.R * 3 \ 16
         Down3(0).G = Down3(1).G + PixErr.G * 3 \ 16
@@ -1409,16 +1410,16 @@ For Z = 0 To picImage.ScaleHeight - 1
     Next
     LinePix(X - 1) = Down3(1)
     
-    'Copy index color
+    '复制索引颜色
     CopyMemory ByVal Ptr24, Line24(0), BmpWidth * 3
     
     Ptr24 = Ptr24 + Pitch24
 Next
 
-'Display
+'显示
 BitBlt picImage.hDC, 0, 0, BmpWidth, BmpHeight, hTempDC24, 0, 0, vbSrcCopy
 
-'Delete temp
+'擦屁股
 DeleteDC hTempDC24
 End Sub
 
@@ -1450,19 +1451,15 @@ Private Sub Gen()
 Freeze
 Dim Z As Long, X As Long, Y As Long, I As Long, J As Long, Pid As Long, R As Long, P As Long, T As Long
 Dim BmpWidth As Long, BmpHeight As Long
-Dim StrDT() As String, StrBL() As String, StrTemp As Byte
+Dim StrDT() As Byte, StrBL() As Byte, StrTemp As Byte
 Dim LoopDB As Long, LoopBI As Long
-Dim TempHX() As Byte, TempHZ() As Byte, TempHLoopDB() As Byte, TempHLoopBI() As Byte
+Dim TempHX() As Byte, TempHY() As Byte, TempHZ() As Byte, TempHLoopDB() As Byte, TempHLoopBI() As Byte
 Dim HX As String, HY As String, HZ As String, BY As Long
 Dim HLoopDB As String, HLoopBI As String
 Dim StrP As Long
 
-If IsBumpy Then
-    BY = 255
-    HY = Chr(0) & Chr(255)
-Else
+If Not IsBumpy Then
     BY = 1
-    HY = Chr(0) & Chr(1)
 End If
 
 Dim XOff As Long, YOff As Long, ZOff As Long
@@ -1472,21 +1469,6 @@ ZOff = 1
 
 BmpWidth = picImage.ScaleWidth
 BmpHeight = picImage.ScaleHeight
-
-LoopDB = BmpWidth * BmpHeight * BY
-LoopBI = BmpWidth * BmpHeight
-TempHX = Replace(Format(Hex(BmpWidth), "@@@@"), " ", "0")
-TempHZ = Replace(Format(Hex(BmpHeight), "@@@@"), " ", "0")
-TempHLoopDB = Replace(Format(Hex(LoopDB), "@@@@@@@@"), " ", "0")
-TempHLoopBI = Replace(Format(Hex(LoopBI), "@@@@@@@@"), " ", "0")
-HX = TempHX
-HZ = TempHZ
-HLoopDB = TempHLoopDB
-HLoopBI = TempHLoopBI
-
-
-ReDim StrDT(LoopDB)
-ReDim StrBL(LoopDB)
 
 Dim YPositions() As Long
 ReDim YPositions(BmpWidth * BmpHeight - 1)
@@ -1510,10 +1492,10 @@ Dim Bumpy As Long
 Dim HeightLimitBreak As Long
 I = 0
 
-Const Y_Min_Limit As Long = 0 'Minimum Y value
-Const Y_Max_Limit As Long = 255 'Maximum Y value
+Const Y_Min_Limit As Long = 0 '最小Y值
+Const Y_Max_Limit As Long = 255 '最大Y值
 
-'Column by column, traversing the whole bitmap
+'一列一列来，遍历整个位图
 For X = 0 To BmpWidth - 1
     Y = YOff
     I = X
@@ -1521,15 +1503,15 @@ For X = 0 To BmpWidth - 1
     LastDown = I
     For Z = 0 To BmpHeight - 1
         YPositions(I) = Y
-        'Deep, medium, shallow，-1, 0, 1
-        'Current pixel brightness, depending on the height of the square behind
-        Bumpy = m_Bumpy(m_ColorIndices(I)) 'Adjustments to the box at the back
+        '深，中，浅，-1, 0, 1
+        '当前像素亮度，取决于后方的方块的高度位置
+        Bumpy = m_Bumpy(m_ColorIndices(I)) '后方的方块需要做出的调整
         
         If Bumpy Then
-            Y = Y + Bumpy 'The Y value is the height of the next block
-            
+            Y = Y + Bumpy 'Y值此时是下一个方块的高度
+            If Y > BY Then BY = Y
             If Bumpy < 0 Then
-                'If it is too low, the block in front should be raised
+                '过低，则需抬高前面的方块
                 If Y < Y_Min_Limit Then
                     For J = LastUp To I Step BmpWidth
                         YPositions(J) = YPositions(J) + 1
@@ -1543,7 +1525,7 @@ For X = 0 To BmpWidth - 1
             
                 LastDown = I
             ElseIf Bumpy > 0 Then
-                'If it is too high, the block in front should be lowered
+                '过高，则要压低前面的方块
                 If Y > Y_Max_Limit Then
                     For J = LastDown To I Step BmpWidth
                         YPositions(J) = YPositions(J) - 1
@@ -1562,18 +1544,34 @@ For X = 0 To BmpWidth - 1
     Next
 Next
 
-'Statistical range
+LoopDB = BmpWidth * BmpHeight * BY
+LoopBI = BmpWidth * BmpHeight
+TempHX = Replace(Format(Hex(BmpWidth), "@@@@"), " ", "0")
+TempHY = Replace(Format(Hex(BY), "@@@@"), " ", "0")
+TempHZ = Replace(Format(Hex(BmpHeight), "@@@@"), " ", "0")
+TempHLoopDB = Replace(Format(Hex(LoopDB), "@@@@@@@@"), " ", "0")
+TempHLoopBI = Replace(Format(Hex(LoopBI), "@@@@@@@@"), " ", "0")
+HX = TempHX
+HY = TempHY
+HZ = TempHZ
+HLoopDB = TempHLoopDB
+HLoopBI = TempHLoopBI
+
+ReDim StrDT(LoopDB)
+ReDim StrBL(LoopDB)
+
+'统计范围
 Dim MinY As Long, MaxY As Long
 MinY = Y_Max_Limit + 1
 MaxY = Y_Min_Limit - 1
 For I = 0 To UBound(YPositions)
-    Y = YPositions(I)
+    Y = YPositions(I) '懒得打字
     If Y < MinY Then MinY = Y
     If Y > MaxY Then MaxY = Y
 Next
 
 If HeightLimitBreak Then
-    If MsgBox("Error:255 blocks height limit break." & vbCrLf & "Click [Cancel] to cancel and [OK] to continue", vbInformation Or vbOKCancel) = vbCancel Then
+    If MsgBox("错误：生成方块超过了高度限制。" & vbCrLf & "按下 [取消] 取消，[确定]继续", vbInformation Or vbOKCancel) = vbCancel Then
         UnFreeze
         Close #1
         Exit Sub
@@ -1642,7 +1640,8 @@ Next
 Open App.Path & "\temp" For Binary As #1
 Put #1, , Chr$(10) & Chr$(0) & Chr$(9) & "Schematic"
 Put #1, , Chr$(2) & Chr$(0) & Chr$(6) & "Height"
-Put #1, , HY
+Put #1, , CByte("&H" & CStr(Left(HY, 2)))
+Put #1, , CByte("&H" & CStr(Right(HY, 2)))
 Put #1, , Chr$(2) & Chr$(0) & Chr$(6) & "Length"
 Put #1, , CByte("&H" & CStr(Left(HZ, 2)))
 Put #1, , CByte("&H" & CStr(Right(HZ, 2)))
@@ -1758,7 +1757,7 @@ End Sub
 
 Private Sub Palette_Change()
 Dim I As Long
-'Calc PaletteCount
+'计算PaletteCount
 For I = 1 To 21
 PaletteCheck(I) = mnuPalette1_7(I).Visible
 If mnuPalette1_7(I).Visible = True Then PaletteCount = PaletteCount + 1
@@ -1779,7 +1778,7 @@ Dim Image As String
 Path = App.Path
 
 If Dir(App.Path & "\gzip.exe") = "" Then
-MsgBox "Error:gzip.exe missing." & vbCrLf & Err.Description, vbExclamation, "Load Fail"
+MsgBox "错误：gzip.exe丢失。" & vbCrLf & Err.Description, vbExclamation, "加载失败"
 End
 End If
 
@@ -1805,28 +1804,21 @@ End Sub
 Private Sub Form_Resize()
 On Error Resume Next
 picImageView.Width = ScaleWidth - picImageView.Left
-If Me.ScaleWidth < 177 + picImage.ScaleWidth Or Me.ScaleHeight < picImage.ScaleHeight Then
-Me.Width = frmh
-Me.Height = frmw
-End If
-frmh = Me.Height
-frmw = Me.Width
 End Sub
-
 Function OpenImage()
 Dim OFN As OPENFILENAME
 With OFN
     .lStructSize = Len(OFN)
     .hwndOwner = hwnd
-    .lpstrFilter = Replace("Image File (.bmp .jpg .jpeg .gif)|*.bmp;*.jpg;*.jpeg;*.gif|All|*.*|", "|", vbNullChar)
+    .lpstrFilter = Replace("图像文件 (.bmp .jpg .jpeg .gif)|*.bmp;*.jpg;*.jpeg;*.gif|所有文件|*.*|", "|", vbNullChar)
     .nFilterIndex = 1
     .lpstrFile = String(256, 0)
     .nMaxFile = 256
-    .lpstrTitle = "Select Image"
+    .lpstrTitle = "选择一个图片文件"
     .flags = OFN_EXPLORER Or OFN_FILEMUSTEXIST Or OFN_HIDEREADONLY Or OFN_EXTENSIONDIFFERENT
 End With
 If GetOpenFileName(ByVal VarPtr(OFN)) Then
-'If ByVal varptr is not used here, VB will convert all strings in this structure to ANSI
+'这里不弄ByVal VarPtr的话……VB会把这个结构体里的所有字符串转换为ANSI
     OpenImage = Trim$(Replace(OFN.lpstrFile, vbNullChar, ""))
 End If
 End Function
@@ -1858,11 +1850,11 @@ Dim Save As OPENFILENAME
     Save.lStructSize = Len(Save)
     Save.hwndOwner = hwnd
     Save.hInstance = App.hInstance
-    Save.lpstrFilter = "Schematic Files(*.schematic)"
+    Save.lpstrFilter = "Schematic文件(*.schematic)"
     Save.lpstrDefExt = "schematic"
     Save.lpstrFile = "Image" & String$(255 - Len("Image"), 0)
     Save.nMaxFile = 255
-    Save.lpstrTitle = "Save to"
+    Save.lpstrTitle = "导出到"
     Save.flags = OFN_HIDEREADONLY + OFN_PATHMUSTEXIST + OFN_OVERWRITEPROMPT
     rtn = GetSaveFileName(Save)
 
@@ -1876,7 +1868,7 @@ Dim Save As OPENFILENAME
     Exit Function
     
 myError:
-    MsgBox "Error;Operation error.", vbCritical + vbOKOnly
+    MsgBox "错误：操作错误。", vbCritical + vbOKOnly
 End Function
 
 Private Sub OpenFile_Click()
@@ -1946,12 +1938,23 @@ End Sub
 
 Private Sub OutPut()
 Dim Path As String, FileTemp As String
+Dim I As Long, R As Long, P As Long
     Path = GetDialog()
-    Shell App.Path & "\gzip.exe -f """ & App.Path & "\temp""", vbNormalFocus
-    Call Sleep(500)
-    Shell "cmd /c copy """ & App.Path & "\temp.gz"" " & Path, vbNormalFocus
-    Call Sleep(500)
-    Shell "cmd /c del /f /q """ & App.Path & "\temp.gz""", vbNormalFocus
+    
+    I = Shell(App.Path & "\gzip.exe -f """ & App.Path & "\temp""", vbNormalFocus)
+    P = OpenProcess(SYNCHRONIZE, False, I)
+    R = WaitForSingleObject(P, INFINITE)
+    R = CloseHandle(P)
+    
+    I = Shell("cmd /c copy """ & App.Path & "\temp.gz"" " & Path & " /y", vbNormalFocus)
+    P = OpenProcess(SYNCHRONIZE, False, I)
+    R = WaitForSingleObject(P, INFINITE)
+    R = CloseHandle(P)
+    
+    I = Shell("cmd /c del /f /q """ & App.Path & "\temp.gz""", vbNormalFocus)
+    P = OpenProcess(SYNCHRONIZE, False, I)
+    R = WaitForSingleObject(P, INFINITE)
+    R = CloseHandle(P)
 End Sub
 
 
@@ -2010,34 +2013,34 @@ End Sub
 Private Sub Load_Mune()
 Dim I As Long
 ReDim mnuPalette(26)
-mnuPalette(1) = "Stone"        '1
-mnuPalette(2) = "Grass"      '2
-mnuPalette(3) = "Coarse Dirt"        '3
-mnuPalette(4) = "Oak plank"    '4
-mnuPalette(5) = "Spruce Planks"    '5
-mnuPalette(6) = "Water"          '6
-mnuPalette(7) = "Oak Leaves"    '7
-mnuPalette(8) = "Lapis Block"    '8
-mnuPalette(9) = "Sandstone"        '9
-mnuPalette(10) = "Web"      '10
-mnuPalette(11) = "Gold Block"        '11
-mnuPalette(12) = "Iron Block"        '12
+mnuPalette(1) = "石头"        '1
+mnuPalette(2) = "草方块"      '2
+mnuPalette(3) = "砂土"        '3
+mnuPalette(4) = "橡木木板"    '4
+mnuPalette(5) = "云杉木板"    '5
+mnuPalette(6) = "水"          '6
+mnuPalette(7) = "橡木树叶"    '7
+mnuPalette(8) = "青金石块"    '8
+mnuPalette(9) = "沙石"        '9
+mnuPalette(10) = "蜘蛛网"      '10
+mnuPalette(11) = "金块"        '11
+mnuPalette(12) = "铁块"        '12
 mnuPalette(13) = "TNT"         '13
-mnuPalette(14) = "Diamond Block"      '14
-mnuPalette(15) = "Ice"        '15
-mnuPalette(16) = "Clay"      '16
-mnuPalette(17) = "Netherrack"      '17
-mnuPalette(18) = "Emerald Block"    '18
-mnuPalette(19) = "Melon Block"      '19
-mnuPalette(20) = "Redstone Block"      '20
-mnuPalette(21) = "Quartz Block"      '21
+mnuPalette(14) = "钻石块"      '14
+mnuPalette(15) = "冰块"        '15
+mnuPalette(16) = "粘土块"      '16
+mnuPalette(17) = "地狱岩"      '17
+mnuPalette(18) = "绿宝石块"    '18
+mnuPalette(19) = "西瓜块"      '19
+mnuPalette(20) = "红石块"      '20
+mnuPalette(21) = "石英块"      '21
 '1.8+
-mnuPalette(22) = "Prismarine"      '22
-mnuPalette(23) = "Red Sandstone"      '23
+mnuPalette(22) = "海晶石"      '22
+mnuPalette(23) = "红沙岩"      '23
 '1.10+
-mnuPalette(24) = "Purpur Block"      '24
-mnuPalette(25) = "Nether Wart Block"    '25
-mnuPalette(26) = "Bone Block"        '26
+mnuPalette(24) = "紫珀块"      '24
+mnuPalette(25) = "地狱疣块"    '25
+mnuPalette(26) = "骨块"        '26
 
 ReDim PaletteCheck(26)
 For I = 1 To 21

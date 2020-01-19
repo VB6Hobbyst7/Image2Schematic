@@ -361,8 +361,8 @@ Private m_MinPalRGB As Color_t
 Private m_MaxPalRGB As Color_t
 Private m_PalMinMaxRGBDiff As Color_t
 Private m_Bumpy() As Long
-Private m_Names() As Long
-Private m_Nbt() As Long
+Private m_Names() As Byte
+Private m_Nbt() As Byte
 Private PaletteCheck() As Boolean
 Private PaletteSetAgain As Boolean
 Private PaletteCount As Long
@@ -1451,19 +1451,15 @@ Private Sub Gen()
 Freeze
 Dim Z As Long, X As Long, Y As Long, I As Long, J As Long, Pid As Long, R As Long, P As Long, T As Long
 Dim BmpWidth As Long, BmpHeight As Long
-Dim StrDT() As String, StrBL() As String, StrTemp As Byte
+Dim StrDT() As Byte, StrBL() As Byte, StrTemp As Byte
 Dim LoopDB As Long, LoopBI As Long
-Dim TempHX() As Byte, TempHZ() As Byte, TempHLoopDB() As Byte, TempHLoopBI() As Byte
+Dim TempHX() As Byte, TempHY() As Byte, TempHZ() As Byte, TempHLoopDB() As Byte, TempHLoopBI() As Byte
 Dim HX As String, HY As String, HZ As String, BY As Long
 Dim HLoopDB As String, HLoopBI As String
 Dim StrP As Long
 
-If IsBumpy Then
-    BY = 255
-    HY = Chr(0) & Chr(255)
-Else
+If Not IsBumpy Then
     BY = 1
-    HY = Chr(0) & Chr(1)
 End If
 
 Dim XOff As Long, YOff As Long, ZOff As Long
@@ -1473,21 +1469,6 @@ ZOff = 1
 
 BmpWidth = picImage.ScaleWidth
 BmpHeight = picImage.ScaleHeight
-
-LoopDB = BmpWidth * BmpHeight * BY
-LoopBI = BmpWidth * BmpHeight
-TempHX = Replace(Format(Hex(BmpWidth), "@@@@"), " ", "0")
-TempHZ = Replace(Format(Hex(BmpHeight), "@@@@"), " ", "0")
-TempHLoopDB = Replace(Format(Hex(LoopDB), "@@@@@@@@"), " ", "0")
-TempHLoopBI = Replace(Format(Hex(LoopBI), "@@@@@@@@"), " ", "0")
-HX = TempHX
-HZ = TempHZ
-HLoopDB = TempHLoopDB
-HLoopBI = TempHLoopBI
-
-
-ReDim StrDT(LoopDB)
-ReDim StrBL(LoopDB)
 
 Dim YPositions() As Long
 ReDim YPositions(BmpWidth * BmpHeight - 1)
@@ -1528,7 +1509,7 @@ For X = 0 To BmpWidth - 1
         
         If Bumpy Then
             Y = Y + Bumpy 'Y值此时是下一个方块的高度
-            
+            If Y > BY Then BY = Y
             If Bumpy < 0 Then
                 '过低，则需抬高前面的方块
                 If Y < Y_Min_Limit Then
@@ -1562,6 +1543,22 @@ For X = 0 To BmpWidth - 1
         I = I + BmpWidth
     Next
 Next
+
+LoopDB = BmpWidth * BmpHeight * BY
+LoopBI = BmpWidth * BmpHeight
+TempHX = Replace(Format(Hex(BmpWidth), "@@@@"), " ", "0")
+TempHY = Replace(Format(Hex(BY), "@@@@"), " ", "0")
+TempHZ = Replace(Format(Hex(BmpHeight), "@@@@"), " ", "0")
+TempHLoopDB = Replace(Format(Hex(LoopDB), "@@@@@@@@"), " ", "0")
+TempHLoopBI = Replace(Format(Hex(LoopBI), "@@@@@@@@"), " ", "0")
+HX = TempHX
+HY = TempHY
+HZ = TempHZ
+HLoopDB = TempHLoopDB
+HLoopBI = TempHLoopBI
+
+ReDim StrDT(LoopDB)
+ReDim StrBL(LoopDB)
 
 '统计范围
 Dim MinY As Long, MaxY As Long
@@ -1643,7 +1640,8 @@ Next
 Open App.Path & "\temp" For Binary As #1
 Put #1, , Chr$(10) & Chr$(0) & Chr$(9) & "Schematic"
 Put #1, , Chr$(2) & Chr$(0) & Chr$(6) & "Height"
-Put #1, , HY
+Put #1, , CByte("&H" & CStr(Left(HY, 2)))
+Put #1, , CByte("&H" & CStr(Right(HY, 2)))
 Put #1, , Chr$(2) & Chr$(0) & Chr$(6) & "Length"
 Put #1, , CByte("&H" & CStr(Left(HZ, 2)))
 Put #1, , CByte("&H" & CStr(Right(HZ, 2)))
@@ -1806,14 +1804,7 @@ End Sub
 Private Sub Form_Resize()
 On Error Resume Next
 picImageView.Width = ScaleWidth - picImageView.Left
-If Me.ScaleWidth < 177 + picImage.ScaleWidth Or Me.ScaleHeight < picImage.ScaleHeight Then
-Me.Width = frmh
-Me.Height = frmw
-End If
-frmh = Me.Height
-frmw = Me.Width
 End Sub
-
 Function OpenImage()
 Dim OFN As OPENFILENAME
 With OFN
@@ -1947,12 +1938,23 @@ End Sub
 
 Private Sub OutPut()
 Dim Path As String, FileTemp As String
+Dim I As Long, R As Long, P As Long
     Path = GetDialog()
-    Shell App.Path & "\gzip.exe -f """ & App.Path & "\temp""", vbNormalFocus
-    Call Sleep(500)
-    Shell "cmd /c copy """ & App.Path & "\temp.gz"" " & Path, vbNormalFocus
-    Call Sleep(500)
-    Shell "cmd /c del /f /q """ & App.Path & "\temp.gz""", vbNormalFocus
+    
+    I = Shell(App.Path & "\gzip.exe -f """ & App.Path & "\temp""", vbNormalFocus)
+    P = OpenProcess(SYNCHRONIZE, False, I)
+    R = WaitForSingleObject(P, INFINITE)
+    R = CloseHandle(P)
+    
+    I = Shell("cmd /c copy """ & App.Path & "\temp.gz"" " & Path & " /y", vbNormalFocus)
+    P = OpenProcess(SYNCHRONIZE, False, I)
+    R = WaitForSingleObject(P, INFINITE)
+    R = CloseHandle(P)
+    
+    I = Shell("cmd /c del /f /q """ & App.Path & "\temp.gz""", vbNormalFocus)
+    P = OpenProcess(SYNCHRONIZE, False, I)
+    R = WaitForSingleObject(P, INFINITE)
+    R = CloseHandle(P)
 End Sub
 
 
