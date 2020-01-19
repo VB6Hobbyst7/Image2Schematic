@@ -7,9 +7,13 @@ Image2schematic is a software that can convert most image (.bmp .jpg .jpeg .gif)
   
   Gzip支持(已包含在库内)
   
+  足够的硬盘空间(根据图片像素和立体模式(最多为平面模式255倍))
+  
   Windows ALL
   
   Gzip support(Included in Library)
+  
+  Enough hard disk space(based on picture pixels and bumpy mode (maximum to 255 times of flat mode))
 ## 测试 Test
 如果你要用大图像的立体模式，请耐心等待，这需要几分钟或更长的时间。
 
