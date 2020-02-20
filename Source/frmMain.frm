@@ -1,10 +1,21 @@
 VERSION 5.00
 Begin VB.Form frmMain 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
    Caption         =   "Image2Schematic"
    ClientHeight    =   11370
    ClientLeft      =   225
    ClientTop       =   870
    ClientWidth     =   13545
+   BeginProperty Font 
+      Name            =   "微软雅黑"
+      Size            =   9
+      Charset         =   134
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
    ScaleHeight     =   758
@@ -13,27 +24,48 @@ Begin VB.Form frmMain
    StartUpPosition =   3  '窗口缺省
    Begin VB.PictureBox picImageView 
       Align           =   3  'Align Left
-      BackColor       =   &H8000000C&
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
       Height          =   11370
-      Left            =   2655
+      Left            =   2895
       OLEDropMode     =   1  'Manual
-      ScaleHeight     =   754
+      ScaleHeight     =   756
       ScaleMode       =   3  'Pixel
-      ScaleWidth      =   736
-      TabIndex        =   11
+      ScaleWidth      =   738
+      TabIndex        =   10
       Top             =   0
       Width           =   11100
       Begin VB.PictureBox picSrc 
          AutoRedraw      =   -1  'True
          AutoSize        =   -1  'True
+         BackColor       =   &H00FFFFFF&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "宋体"
+            Size            =   9
+            Charset         =   134
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   4515
          Left            =   0
          Picture         =   "frmMain.frx":1084A
          ScaleHeight     =   301
          ScaleMode       =   3  'Pixel
          ScaleWidth      =   501
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   0
          Visible         =   0   'False
          Width           =   7515
@@ -42,6 +74,15 @@ Begin VB.Form frmMain
          AutoRedraw      =   -1  'True
          BackColor       =   &H00000000&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "宋体"
+            Size            =   9
+            Charset         =   134
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1080
          Left            =   1320
          MousePointer    =   15  'Size All
@@ -49,7 +90,7 @@ Begin VB.Form frmMain
          ScaleHeight     =   72
          ScaleMode       =   3  'Pixel
          ScaleWidth      =   64
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   1320
          Width           =   960
       End
@@ -58,13 +99,22 @@ Begin VB.Form frmMain
       AutoRedraw      =   -1  'True
       AutoSize        =   -1  'True
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   240
       Left            =   0
       Picture         =   "frmMain.frx":13B4B
       ScaleHeight     =   16
       ScaleMode       =   3  'Pixel
       ScaleWidth      =   16
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   0
       Visible         =   0   'False
       Width           =   240
@@ -72,6 +122,15 @@ Begin VB.Form frmMain
    Begin VB.PictureBox picVAdjust 
       Align           =   2  'Align Bottom
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   0
       Left            =   0
       MousePointer    =   7  'Size N S
@@ -90,6 +149,15 @@ Begin VB.Form frmMain
    Begin VB.PictureBox picOutput 
       Align           =   2  'Align Bottom
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   0
       Left            =   0
       ScaleHeight     =   0
@@ -100,32 +168,136 @@ Begin VB.Form frmMain
    End
    Begin VB.PictureBox picCtrlPan 
       Align           =   3  'Align Left
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
       Height          =   11370
       Left            =   0
       ScaleHeight     =   758
       ScaleMode       =   3  'Pixel
-      ScaleWidth      =   177
+      ScaleWidth      =   193
       TabIndex        =   0
       Top             =   0
-      Width           =   2655
+      Width           =   2895
       Begin VB.Frame Frames 
-         Caption         =   "&大小"
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         Caption         =   "方块"
+         ForeColor       =   &H80000008&
+         Height          =   2655
+         Index           =   3
+         Left            =   240
+         TabIndex        =   13
+         Top             =   2040
+         Width           =   2415
+         Begin VB.Frame Frames 
+            BackColor       =   &H80000005&
+            Height          =   450
+            Index           =   1
+            Left            =   120
+            TabIndex        =   17
+            Top             =   2040
+            Width           =   2200
+            Begin VB.Label cmdApplyBlock 
+               Alignment       =   2  'Center
+               Appearance      =   0  'Flat
+               BackColor       =   &H80000005&
+               Caption         =   "应用"
+               ForeColor       =   &H80000008&
+               Height          =   255
+               Left            =   30
+               TabIndex        =   18
+               Top             =   135
+               Width           =   2150
+            End
+         End
+         Begin VB.CheckBox chkSelinv 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000005&
+            Caption         =   "反选"
+            ForeColor       =   &H80000008&
+            Height          =   255
+            Left            =   840
+            TabIndex        =   16
+            Top             =   1800
+            Width           =   975
+         End
+         Begin VB.CheckBox chkSelall 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000005&
+            Caption         =   "全选"
+            ForeColor       =   &H80000008&
+            Height          =   255
+            Left            =   120
+            TabIndex        =   15
+            Top             =   1800
+            Width           =   735
+         End
+         Begin VB.ListBox BlockList 
+            Appearance      =   0  'Flat
+            Height          =   1455
+            ItemData        =   "frmMain.frx":1408F
+            Left            =   120
+            List            =   "frmMain.frx":14091
+            Style           =   1  'Checkbox
+            TabIndex        =   14
+            Top             =   240
+            Width           =   2175
+         End
+      End
+      Begin VB.Frame Frames 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         Caption         =   "大小"
+         ForeColor       =   &H80000008&
          Height          =   1815
          Index           =   2
          Left            =   240
          TabIndex        =   1
          Top             =   120
-         Width           =   2175
-         Begin VB.CommandButton cmdApplySizing 
-            Caption         =   "&应用"
-            Height          =   375
+         Width           =   2415
+         Begin VB.Frame Frames 
+            BackColor       =   &H80000005&
+            Height          =   450
+            Index           =   0
             Left            =   120
-            TabIndex        =   9
-            Top             =   1320
-            Width           =   1935
+            TabIndex        =   19
+            Top             =   1200
+            Width           =   2200
+            Begin VB.Label cmdApplySizing 
+               Alignment       =   2  'Center
+               Appearance      =   0  'Flat
+               BackColor       =   &H80000005&
+               Caption         =   "应用"
+               ForeColor       =   &H80000008&
+               Height          =   255
+               Left            =   30
+               TabIndex        =   20
+               Top             =   135
+               Width           =   2150
+            End
          End
          Begin VB.TextBox txtWidth 
+            Appearance      =   0  'Flat
+            BeginProperty Font 
+               Name            =   "宋体"
+               Size            =   9
+               Charset         =   134
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   270
             Left            =   840
             TabIndex        =   4
@@ -134,6 +306,16 @@ Begin VB.Form frmMain
             Width           =   1215
          End
          Begin VB.TextBox txtHeight 
+            Appearance      =   0  'Flat
+            BeginProperty Font 
+               Name            =   "宋体"
+               Size            =   9
+               Charset         =   134
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   270
             Left            =   840
             TabIndex        =   6
@@ -142,7 +324,10 @@ Begin VB.Form frmMain
             Width           =   1215
          End
          Begin VB.CheckBox ChkRatio 
-            Caption         =   "&保持宽高比"
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000005&
+            Caption         =   "保持宽高比"
+            ForeColor       =   &H80000008&
             Height          =   255
             Left            =   120
             TabIndex        =   2
@@ -151,24 +336,32 @@ Begin VB.Form frmMain
             Width           =   1935
          End
          Begin VB.Label Labels 
+            Alignment       =   1  'Right Justify
+            Appearance      =   0  'Flat
             AutoSize        =   -1  'True
-            Caption         =   "&宽:"
-            Height          =   180
+            BackColor       =   &H80000005&
+            Caption         =   "宽:"
+            ForeColor       =   &H80000008&
+            Height          =   255
             Index           =   5
-            Left            =   360
+            Left            =   120
             TabIndex        =   3
             Top             =   240
-            Width           =   270
+            Width           =   585
          End
          Begin VB.Label Labels 
+            Alignment       =   1  'Right Justify
+            Appearance      =   0  'Flat
             AutoSize        =   -1  'True
-            Caption         =   "&高:"
-            Height          =   180
+            BackColor       =   &H80000005&
+            Caption         =   "高:"
+            ForeColor       =   &H80000008&
+            Height          =   255
             Index           =   6
-            Left            =   360
+            Left            =   120
             TabIndex        =   5
             Top             =   600
-            Width           =   270
+            Width           =   585
          End
       End
    End
@@ -183,68 +376,24 @@ Begin VB.Form frmMain
       Begin VB.Menu DivingLine 
          Caption         =   "-"
       End
-      Begin VB.Menu Exit 
+      Begin VB.Menu ExitMe 
          Caption         =   "退出"
       End
    End
-   Begin VB.Menu Preview 
-      Caption         =   "预览"
+   Begin VB.Menu RefreshImg 
+      Caption         =   "刷新"
    End
    Begin VB.Menu Setting 
       Caption         =   "设置"
       Begin VB.Menu Paletteset 
          Caption         =   "调色板设置"
-         Begin VB.Menu Type 
-            Caption         =   "格式"
+         Begin VB.Menu Mode 
+            Caption         =   "模式"
             Begin VB.Menu Flat 
                Caption         =   "平面"
             End
             Begin VB.Menu Bumpy 
                Caption         =   "立体"
-            End
-         End
-         Begin VB.Menu Palette 
-            Caption         =   "调色板"
-            Begin VB.Menu Wool 
-               Caption         =   "羊毛"
-               Checked         =   -1  'True
-               Enabled         =   0   'False
-            End
-            Begin VB.Menu DivingLine1 
-               Caption         =   "-"
-            End
-            Begin VB.Menu mnuPalette1_7 
-               Caption         =   "方块1.7"
-               Checked         =   -1  'True
-               Index           =   0
-               Visible         =   0   'False
-            End
-            Begin VB.Menu DivingLine2 
-               Caption         =   "-"
-            End
-            Begin VB.Menu mnuPalette1_8 
-               Caption         =   "方块1.8"
-               Checked         =   -1  'True
-               Index           =   0
-               Visible         =   0   'False
-            End
-            Begin VB.Menu DivingLine3 
-               Caption         =   "-"
-            End
-            Begin VB.Menu mnuPalette1_10 
-               Caption         =   "方块1.10"
-               Checked         =   -1  'True
-               Index           =   0
-               Visible         =   0   'False
-            End
-            Begin VB.Menu DivingLine4 
-               Caption         =   "-"
-            End
-            Begin VB.Menu mnuPalette1_12 
-               Caption         =   "方块1.12"
-               Checked         =   -1  'True
-               Index           =   0
-               Visible         =   0   'False
             End
          End
       End
@@ -260,6 +409,15 @@ Begin VB.Form frmMain
             Caption         =   "误差扩散"
          End
       End
+      Begin VB.Menu Language 
+         Caption         =   "语言"
+         Begin VB.Menu English 
+            Caption         =   "English"
+         End
+         Begin VB.Menu Chinese 
+            Caption         =   "简体中文"
+         End
+      End
    End
    Begin VB.Menu About 
       Caption         =   "关于"
@@ -269,12 +427,6 @@ Begin VB.Form frmMain
       Begin VB.Menu AA55 
          Caption         =   "0xAA55论坛"
       End
-      Begin VB.Menu DivingLine5 
-         Caption         =   "-"
-      End
-      Begin VB.Menu GetHelp 
-         Caption         =   "获取帮助"
-      End
    End
 End
 Attribute VB_Name = "frmMain"
@@ -283,7 +435,9 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-
+Dim LangMsg(13) As String, LangList(26) As String
+Dim AChecked As Long, BChecked As Long
+Dim Auto As Boolean, Auto2 As Boolean
 Dim frmh As Long, frmw As Long
 'Dim m_SendStart As Single
 Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
@@ -292,6 +446,7 @@ Private Const SYNCHRONIZE = &H100000
 Private Declare Function WaitForSingleObject Lib "kernel32" (ByVal hHandle As Long, ByVal dwMilliseconds As Long) As Long
 Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
 Private Declare Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As Long) As Long
+Private Declare Function GetSystemDefaultLCID Lib "kernel32" () As Long
 Private Const SendTime As Single = 3
 Private Declare Sub keybd_event Lib "user32" (ByVal bVk As Byte, ByVal bScan As Byte, ByVal dwFlags As Long, ByVal dwExtraInfo As Long)
 Private Const KEYEVENTF_KEYUP = &H2
@@ -496,7 +651,7 @@ ReDim m_Names(m_NumColors - 1)
 ReDim m_Nbt(m_NumColors - 1)
 
 
-
+If PaletteCheck(0) = True Then
 J = 47
 m_Palette(J - 47) = RGB(180, 180, 180)
 m_Palette(J - 46) = RGB(220, 220, 220)
@@ -583,6 +738,8 @@ m_Nbt(J - 8 + I) = &HD
 m_Nbt(J - 5 + I) = &HE
 m_Nbt(J - 2 + I) = &HF
 Next
+
+End If
 
 If PaletteCheck(1) = True Then
 J = J + 3
@@ -875,6 +1032,8 @@ ReDim m_Bumpy(m_NumColors - 1)
 ReDim m_Names(m_NumColors - 1)
 ReDim m_Nbt(m_NumColors - 1)
 
+If PaletteCheck(0) = True Then
+
 J = 15
 m_Palette(J - 15) = RGB(220, 220, 220)
 m_Palette(J - 14) = RGB(186, 109, 44)
@@ -912,6 +1071,8 @@ m_Nbt(J - 3) = &HC
 m_Nbt(J - 2) = &HD
 m_Nbt(J - 1) = &HE
 m_Nbt(J) = &HF
+
+End If
 
 If PaletteCheck(1) = True Then
 J = J + 1
@@ -1123,7 +1284,7 @@ ApplyDithering
 
 Exit Sub
 ErrHandler:
-MsgBox "错误：加载图片失败。" & vbCrLf & "(" & Err.Number & ")" & Err.Description, vbExclamation, "加载图片失败"
+MsgBox LangMsg(0) & vbCrLf & "(" & Err.Number & ")" & Err.Description, vbExclamation, LangMsg(1)
 End Sub
 
 Private Sub AA55_Click()
@@ -1138,13 +1299,95 @@ Load_Palette
 ApplyDithering
 End Sub
 
+Private Sub SetChinese()
+File.Caption = "文件"
+OpenFile.Caption = "打开"
+Save.Caption = "导出为 .schematic"
+ExitMe.Caption = "退出"
+RefreshImg.Caption = "刷新"
+Setting.Caption = "设置"
+Paletteset.Caption = "调色板设置"
+Mode.Caption = "模式"
+Flat.Caption = "平面"
+Bumpy.Caption = "立体"
+CaleSet.Caption = "算法设置"
+DG.Caption = "近似颜色"
+OD.Caption = "矩形抖动"
+FSD.Caption = "误差扩散"
+Language.Caption = "语言"
+About.Caption = "关于"
+AA55.Caption = "0xAA55论坛"
+Frames(2).Caption = "大小"
+Frames(3).Caption = "方块"
+Labels(5).Caption = "宽:"
+Labels(6).Caption = "高:"
+ChkRatio.Caption = "保持宽高比"
+cmdApplyBlock.Caption = "应用"
+cmdApplySizing.Caption = "应用"
+chkSelall.Caption = "全选"
+chkSelinv.Caption = "反选"
+LangMsg(0) = "错误：加载图片失败。"
+LangMsg(1) = "加载图片失败"
+LangMsg(2) = "错误：输入的图片大小无效。"
+LangMsg(3) = "不支持此大小"
+LangMsg(4) = "错误：生成方块超过了高度限制。"
+LangMsg(5) = "按下 [取消] 取消，[确定]继续"
+LangMsg(6) = "错误：gzip.exe丢失。"
+LangMsg(7) = "加载失败"
+LangMsg(8) = "图像文件 (.bmp .jpg .jpeg .gif)|*.bmp;*.jpg;*.jpeg;*.gif|所有文件|*.*|"
+LangMsg(9) = "选择图像文件"
+LangMsg(10) = "Schematic文件(*.schematic)"
+LangMsg(11) = "导出到"
+LangMsg(12) = "错误：操作错误。"
+LangMsg(13) = "必须选中至少一项"
+LangList(0) = "羊毛"        '0
+LangList(1) = "石头"        '1
+LangList(2) = "草方块"      '2
+LangList(3) = "砂土"        '3
+LangList(4) = "橡木木板"    '4
+LangList(5) = "云杉木板"    '5
+LangList(6) = "水"          '6
+LangList(7) = "橡树树叶"    '7
+LangList(8) = "青金石块"    '8
+LangList(9) = "沙岩"        '9
+LangList(10) = "蜘蛛网"      '10
+LangList(11) = "金块"        '11
+LangList(12) = "铁块"        '12
+LangList(13) = "TNT"         '13
+LangList(14) = "钻石块"      '14
+LangList(15) = "冰块"        '15
+LangList(16) = "粘土块"      '16
+LangList(17) = "地狱岩"      '17
+LangList(18) = "绿宝石块"    '18
+LangList(19) = "西瓜块"      '19
+LangList(20) = "红沙岩"      '20
+LangList(21) = "石英块"      '21
+'1.8+
+LangList(22) = "海晶石"      '22
+LangList(23) = "红石块"      '23
+'1.10+
+LangList(24) = "紫珀块"      '24
+LangList(25) = "地狱疣块"    '25
+LangList(26) = "骨块"        '26
+Unload_List
+Load_List
+End Sub
+
+Private Sub Chinese_Click()
+Dim I As Long
+SetChinese
+For I = 0 To 26
+BlockList.Selected(I) = PaletteCheck(I)
+Next
+End Sub
+
 Private Sub cmdApplySizing_Click()
 Dim NewWidth As Long, NewHeight As Long
 NewWidth = Val(txtWidth.Text)
 NewHeight = Val(txtHeight.Text)
 
 If NewWidth = 0 Or NewHeight = 0 Then
-    MsgBox "错误：输入的图片大小无效。", vbExclamation, "不支持此大小"
+    MsgBox LangMsg(2), vbExclamation, LangMsg(3)
     Exit Sub
 End If
 
@@ -1571,7 +1814,7 @@ For I = 0 To UBound(YPositions)
 Next
 
 If HeightLimitBreak Then
-    If MsgBox("错误：生成方块超过了高度限制。" & vbCrLf & "按下 [取消] 取消，[确定]继续", vbInformation Or vbOKCancel) = vbCancel Then
+    If MsgBox(LangMsg(4) & vbCrLf & LangMsg(5), vbInformation Or vbOKCancel) = vbCancel Then
         UnFreeze
         Close #1
         Exit Sub
@@ -1696,6 +1939,7 @@ UnFreeze
 
 End Sub
 
+
 Private Sub ApplyDithering()
 If CalcMode = 0 Then
     Downgrade
@@ -1706,15 +1950,99 @@ Else
 End If
 End Sub
 
-Private Sub Exit_Click()
+Private Sub SetEnglish()
+File.Caption = "File"
+OpenFile.Caption = "Open"
+Save.Caption = "Export .schematic"
+ExitMe.Caption = "Exit"
+RefreshImg.Caption = "Refresh"
+Setting.Caption = "Setting"
+Paletteset.Caption = "PaletteSetting"
+Mode.Caption = "Mode"
+Flat.Caption = "Flat"
+Bumpy.Caption = "Bumpy"
+CaleSet.Caption = "Algorithm"
+DG.Caption = "Nearest Color"
+OD.Caption = "Ordered Dithering"
+FSD.Caption = "Error Diffusion Dithering"
+Language.Caption = "Language"
+About.Caption = "About"
+AA55.Caption = "0xAA55 Forum"
+Frames(2).Caption = "Size"
+Frames(3).Caption = "Block"
+Labels(5).Caption = "Width:"
+Labels(6).Caption = "Height:"
+ChkRatio.Caption = "Keep aspect ratio"
+cmdApplyBlock.Caption = "Apply"
+cmdApplySizing.Caption = "Apply"
+chkSelall.Caption = "All"
+chkSelinv.Caption = "Inverse"
+LangMsg(0) = "Error: Failed to load image."
+LangMsg(1) = "Failed to load image"
+LangMsg(2) = "Error: Invalid size entered."
+LangMsg(3) = "Unsupported size"
+LangMsg(4) = "Error: Generated blocks break height limit."
+LangMsg(5) = "Press [Cancel] to cancel, [OK] to continue"
+LangMsg(6) = "Error: gzip.exe missing"
+LangMsg(7) = "Failed to load"
+LangMsg(8) = "Image File (.bmp .jpg .jpeg .gif)|*.bmp;*.jpg;*.jpeg;*.gif|All|*.*|"
+LangMsg(9) = "Select image file"
+LangMsg(10) = "Schematic file(*.schematic)"
+LangMsg(11) = "Export to"
+LangMsg(12) = "Error: Operation error."
+LangMsg(13) = "Must select at least one"
+LangList(0) = "Wool"
+LangList(1) = "Stone"
+LangList(2) = "Grass"
+LangList(3) = "Coarse Dirt"
+LangList(4) = "Oak Plank"
+LangList(5) = "Spruce Plank"
+LangList(6) = "Water"
+LangList(7) = "Oak Leaves"
+LangList(8) = "Lapis Block"
+LangList(9) = "Sandstone"
+LangList(10) = "Web"
+LangList(11) = "Gold Block"
+LangList(12) = "Iron Block"
+LangList(13) = "TNT"
+LangList(14) = "Diamond Block"
+LangList(15) = "Ice"
+LangList(16) = "Clay"
+LangList(17) = "Netherrack"
+LangList(18) = "Emerald Block"
+LangList(19) = "Melon Block"
+LangList(20) = "Red Sandstone"
+LangList(21) = "Quartz Block"
+'1.8+
+LangList(22) = "Prismarine"
+LangList(23) = "Redstone Block"
+'1.10+
+LangList(24) = "Purpur Block"
+LangList(25) = "Nether Wart Block"
+LangList(26) = "Bone Block"
+Unload_List
+Load_List
+End Sub
+
+Private Sub English_Click()
+Dim I As Long
+SetEnglish
+For I = 0 To 26
+BlockList.Selected(I) = PaletteCheck(I)
+Next
+End Sub
+
+Private Sub ExitMe_Click()
 End
 End Sub
+
 
 Private Sub FSD_Click()
 DG.Checked = False
 OD.Checked = False
 CalcMode = 2
 FSD.Checked = True
+ApplyDithering
 End Sub
 
 Private Sub Flat_Click()
@@ -1730,14 +2058,11 @@ OD.Checked = False
 FSD.Checked = False
 CalcMode = 0
 DG.Checked = True
+ApplyDithering
 End Sub
 
 Private Sub MCImage_Click()
 
-End Sub
-
-Private Sub GetHelp_Click()
-Call ShellExecute(hwnd, "open", "https://github.com/Tao0Lu/Image2Schematic", vbNullString, vbNullString, &H0)
 End Sub
 
 Private Sub Image2Schematic_Click()
@@ -1749,58 +2074,50 @@ DG.Checked = False
 FSD.Checked = False
 CalcMode = 1
 OD.Checked = True
-End Sub
-
-Private Sub Palette_Click()
-Palette_Change
-End Sub
-
-Private Sub Palette_Change()
-Dim I As Long
-'计算PaletteCount
-For I = 1 To 21
-PaletteCheck(I) = mnuPalette1_7(I).Visible
-If mnuPalette1_7(I).Visible = True Then PaletteCount = PaletteCount + 1
-Next
-For I = 1 To 2
-PaletteCheck(I) = mnuPalette1_8(I).Visible
-If mnuPalette1_8(I).Visible = True Then PaletteCount = PaletteCount + 1
-Next
-For I = 1 To 3
-PaletteCheck(I) = mnuPalette1_10(I).Visible
-If mnuPalette1_10(I).Visible = True Then PaletteCount = PaletteCount + 1
-Next
+ApplyDithering
 End Sub
 
 Private Sub Form_Load()
+
+Dim I As Long
 Dim Path As String
 Dim Image As String
 Path = App.Path
 
+If GetSystemDefaultLCID = &H804 Then SetChinese Else SetEnglish
+
 If Dir(App.Path & "\gzip.exe") = "" Then
-MsgBox "错误：gzip.exe丢失。" & vbCrLf & Err.Description, vbExclamation, "加载失败"
+MsgBox LangMsg(6) & vbCrLf & Err.Description, vbExclamation, LangMsg(7)
 End
 End If
-
 Show
-Load_Mune
-Palette_Change
-Flat.Checked = True
-FSD.Checked = True
-CalcMode = 2
-IsBumpy = False
 
 m_Width = picSrc.Width
 m_Height = picSrc.Height
 picImage.Move 0, 0, m_Width, m_Height
 picImage_Resize
-
 txtWidth.Text = m_Width
 txtHeight.Text = m_Height
+
+ReDim PaletteCheck(26)
+PaletteCount = 26
+AChecked = 1
+BChecked = 0
+Auto2 = True
+Flat.Checked = True
+FSD.Checked = True
+CalcMode = 2
+IsBumpy = False
+
+For I = 0 To 26
+PaletteCheck(I) = True
+BlockList.Selected(I) = True
+Next
+chkSelall.Value = 1
+Auto2 = False
 Load_Palette
 ApplyDithering
 End Sub
-
 Private Sub Form_Resize()
 On Error Resume Next
 picImageView.Width = ScaleWidth - picImageView.Left
@@ -1810,11 +2127,11 @@ Dim OFN As OPENFILENAME
 With OFN
     .lStructSize = Len(OFN)
     .hwndOwner = hwnd
-    .lpstrFilter = Replace("图像文件 (.bmp .jpg .jpeg .gif)|*.bmp;*.jpg;*.jpeg;*.gif|所有文件|*.*|", "|", vbNullChar)
+    .lpstrFilter = Replace(LangMsg(8), "|", vbNullChar)
     .nFilterIndex = 1
     .lpstrFile = String(256, 0)
     .nMaxFile = 256
-    .lpstrTitle = "选择一个图片文件"
+    .lpstrTitle = LangMsg(9)
     .flags = OFN_EXPLORER Or OFN_FILEMUSTEXIST Or OFN_HIDEREADONLY Or OFN_EXTENSIONDIFFERENT
 End With
 If GetOpenFileName(ByVal VarPtr(OFN)) Then
@@ -1850,11 +2167,11 @@ Dim Save As OPENFILENAME
     Save.lStructSize = Len(Save)
     Save.hwndOwner = hwnd
     Save.hInstance = App.hInstance
-    Save.lpstrFilter = "Schematic文件(*.schematic)"
+    Save.lpstrFilter = LangMsg(10)
     Save.lpstrDefExt = "schematic"
     Save.lpstrFile = "Image" & String$(255 - Len("Image"), 0)
     Save.nMaxFile = 255
-    Save.lpstrTitle = "导出到"
+    Save.lpstrTitle = LangMsg(11)
     Save.flags = OFN_HIDEREADONLY + OFN_PATHMUSTEXIST + OFN_OVERWRITEPROMPT
     rtn = GetSaveFileName(Save)
 
@@ -1868,7 +2185,7 @@ Dim Save As OPENFILENAME
     Exit Function
     
 myError:
-    MsgBox "错误：操作错误。", vbCritical + vbOKOnly
+    MsgBox LangMsg(12), vbCritical + vbOKOnly
 End Function
 
 Private Sub OpenFile_Click()
@@ -1956,8 +2273,6 @@ Dim I As Long, R As Long, P As Long
     R = WaitForSingleObject(P, INFINITE)
     R = CloseHandle(P)
 End Sub
-
-
 Private Sub Preview_Click()
 ApplyDithering
 End Sub
@@ -2010,56 +2325,87 @@ End If
 
 End Sub
 
-Private Sub Load_Mune()
+Private Sub chkSelall_Click()
 Dim I As Long
-ReDim mnuPalette(26)
-mnuPalette(1) = "石头"        '1
-mnuPalette(2) = "草方块"      '2
-mnuPalette(3) = "砂土"        '3
-mnuPalette(4) = "橡木木板"    '4
-mnuPalette(5) = "云杉木板"    '5
-mnuPalette(6) = "水"          '6
-mnuPalette(7) = "橡木树叶"    '7
-mnuPalette(8) = "青金石块"    '8
-mnuPalette(9) = "沙石"        '9
-mnuPalette(10) = "蜘蛛网"      '10
-mnuPalette(11) = "金块"        '11
-mnuPalette(12) = "铁块"        '12
-mnuPalette(13) = "TNT"         '13
-mnuPalette(14) = "钻石块"      '14
-mnuPalette(15) = "冰块"        '15
-mnuPalette(16) = "粘土块"      '16
-mnuPalette(17) = "地狱岩"      '17
-mnuPalette(18) = "绿宝石块"    '18
-mnuPalette(19) = "西瓜块"      '19
-mnuPalette(20) = "红石块"      '20
-mnuPalette(21) = "石英块"      '21
-'1.8+
-mnuPalette(22) = "海晶石"      '22
-mnuPalette(23) = "红沙岩"      '23
-'1.10+
-mnuPalette(24) = "紫珀块"      '24
-mnuPalette(25) = "地狱疣块"    '25
-mnuPalette(26) = "骨块"        '26
-
-ReDim PaletteCheck(26)
-For I = 1 To 21
-Load mnuPalette1_7(I)
-mnuPalette1_7(I).Caption = mnuPalette(I)
-PaletteCheck(I) = True
-mnuPalette1_7(I).Visible = True
-Next
-For I = 1 To 2
-Load mnuPalette1_8(I)
-mnuPalette1_8(I).Caption = mnuPalette(I + 21)
-PaletteCheck(I) = True
-mnuPalette1_8(I).Visible = True
-Next
-For I = 1 To 3
-Load mnuPalette1_10(I)
-mnuPalette1_10(I).Caption = mnuPalette(I + 23)
-PaletteCheck(I) = True
-mnuPalette1_10(I).Visible = True
-Next
+If Auto2 = True Then Exit Sub
+Auto = False
+If AChecked = 1 Then
+    For I = 0 To BlockList.ListCount - 1
+        BlockList.Selected(I) = False
+    Next
+    Else
+    For I = 0 To BlockList.ListCount - 1
+       BlockList.Selected(I) = True
+    Next
+End If
+AChecked = chkSelall.Value
+Auto = True
+If BChecked = 1 Then
+Auto2 = True
+chkSelinv.Value = 0
+Auto2 = False
+End If
 End Sub
 
+Private Sub chkSelinv_Click()
+
+Dim I As Long
+If Auto2 = True Then Exit Sub
+Auto = False
+For I = 0 To BlockList.ListCount - 1
+    If BlockList.Selected(I) = False Then
+        BlockList.Selected(I) = True
+    Else
+        BlockList.Selected(I) = False
+    End If
+Next
+BChecked = chkSelinv.Value
+Auto = True
+If AChecked = 1 Then
+Auto2 = True
+chkSelall.Value = 0
+Auto2 = False
+End If
+
+End Sub
+
+Private Sub Unload_List()
+Dim I As Long
+For I = BlockList.ListCount - 1 To 0 Step -1
+BlockList.RemoveItem I
+Next
+
+End Sub
+
+Private Sub Load_List()
+Dim I As Long
+For I = 0 To 26
+BlockList.AddItem LangList(I)
+Next
+
+End Sub
+
+Private Sub BlockList_Click()
+If Auto = True Then
+Auto2 = True
+chkSelall.Value = False
+chkSelinv.Value = False
+Auto2 = False
+End If
+
+End Sub
+
+Private Sub cmdApplyBlock_Click()
+Dim I As Long
+If BlockList.SelCount = 0 Then
+MsgBox LangMsg(13) & vbCrLf & Err.Description, vbExclamation
+Exit Sub
+End If
+ReDim PaletteCheck(BlockList.ListCount)
+PaletteCount = BlockList.SelCount
+For I = 0 To BlockList.ListCount - 1
+    PaletteCheck(I) = BlockList.Selected(I)
+Next
+Load_Palette
+ApplyDithering
+End Sub
