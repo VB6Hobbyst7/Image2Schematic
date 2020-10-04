@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -89,7 +89,7 @@ namespace Image2Schematic
             }
             genDitherMatrix();
             this.imageSizeStripStatusLabel.Text = Convert.ToString(imageWidth) + 'x'+ Convert.ToString(imageHeight);
-            applyDithering();
+            reloadImage();
         }
 
         public void reloadImage()
@@ -101,8 +101,8 @@ namespace Image2Schematic
 
             bitmap = resizeImage(bitmap, imageWidth, imageHeight);
 
-            pictureBox.Image = bitmap.Clone() as Image;
             applyDithering();
+            pictureBox.Image = bitmap.Clone() as Image;
         }
 
         public Bitmap resizeImage(Bitmap bmp, int width, int height)
@@ -161,9 +161,6 @@ namespace Image2Schematic
                     CIPtr++;
                 }
             }
-
-            //显示
-            pictureBox.Image = bitmap.Clone() as Image;
         }
 
         private void orderedDithering()
@@ -187,9 +184,6 @@ namespace Image2Schematic
                     CIPtr++;
                 }
             }
-
-            //显示
-            pictureBox.Image = bitmap.Clone() as Image;
         }
 
         private int limitColor(int value)
@@ -391,8 +385,8 @@ namespace Image2Schematic
                                 if (z - LastZ <= 1)
                                 {
                                     //if (DoSurroundWater && m_IsFlowWaterID(LastBlock)) { Fill(XOff + MapX + x - 1, LastY, ZOff + MapZ + LastZ - 1, XOff + MapX + x + 1, LastY - 1, ZOff + MapZ + LastZ + 1, SurroundWaterBlockName, "keep"); }
-                                    currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ - 1;
-                                    //currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ - 1) * imageWidth + XOff + MapX + x - 1;
+                                    //currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ - 1;
+                                    currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ - 1) * imageWidth + XOff + MapX + x - 1;
                                     outFile.Seek(127 + 13 + mapLength + currentPix, SeekOrigin.Begin);
                                     outFile.WriteByte(m_BlockID[LastBlock]);
                                     if (m_Nbt[LastBlock] != 0)
@@ -406,8 +400,8 @@ namespace Image2Schematic
                                     //if (DoSurroundWater && m_IsFlowWaterID(LastBlock)) { Fill(XOff + MapX + x - 1, LastY, ZOff + MapZ + LastZ - 1, XOff + MapX + x + 1, LastY - 1, ZOff + MapZ + z, SurroundWaterBlockName, "keep"); }
                                     for (int b = 0; b <= (ZOff + MapZ + z - 1) - (ZOff + MapZ + LastZ); b++)
                                     {
-                                        currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ + b - 1;
-                                        //currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ + b - 1) * imageWidth + XOff + MapX + x - 1;
+                                        //currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ + b - 1;
+                                        currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ + b - 1) * imageWidth + XOff + MapX + x - 1;
                                         outFile.Seek(127 + 13 + mapLength + currentPix, SeekOrigin.Begin);
                                         outFile.WriteByte(m_BlockID[LastBlock]);
                                         if (m_Nbt[LastBlock] != 0)
@@ -426,8 +420,8 @@ namespace Image2Schematic
                         if (z - LastZ <= 1)
                         {
                             //if (DoSurroundWater && m_IsFlowWaterID(LastBlock)) { Fill(XOff + MapX + x - 1, LastY, ZOff + MapZ + LastZ - 1, XOff + MapX + x + 1, LastY - 1, ZOff + MapZ + LastZ + 1, SurroundWaterBlockName, "keep"); }
-                            currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ - 1;
-                            //currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ - 1) * imageWidth + XOff + MapX + x - 1;
+                            //currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ - 1;
+                            currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ - 1) * imageWidth + XOff + MapX + x - 1;
                             outFile.Seek(127 + 13 + mapLength + currentPix, SeekOrigin.Begin);
                             outFile.WriteByte(m_BlockID[LastBlock]);
                             if (m_Nbt[LastBlock] != 0)
@@ -441,8 +435,8 @@ namespace Image2Schematic
                             //if (DoSurroundWater && m_IsFlowWaterID(LastBlock)) { Fill(XOff + MapX + x - 1, LastY, ZOff + MapZ + LastZ - 1, XOff + MapX + x + 1, LastY - 1, ZOff + MapZ + z, SurroundWaterBlockName, "keep"); }
                             for (int b = 0; b <= (ZOff + MapZ + z - 1) - (ZOff + MapZ + LastZ); b++)
                             {
-                                currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ + b - 1;
-                                //currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ + b - 1) * imageWidth + XOff + MapX + x - 1;
+                                //currentPix = LastY * (imageWidth * imageHeight) + (XOff + MapX + x - 1) * imageHeight + ZOff + MapZ + LastZ + b - 1;
+                                currentPix = LastY * (imageWidth * imageHeight) + (ZOff + MapZ + LastZ + b - 1) * imageWidth + XOff + MapX + x - 1;
                                 outFile.Seek(127 + 13 + mapLength + currentPix, SeekOrigin.Begin);
                                 outFile.WriteByte(m_BlockID[LastBlock]);
                                 if (m_Nbt[LastBlock] != 0)
@@ -550,14 +544,12 @@ namespace Image2Schematic
                     LinePix[w] = Down3[1];
                 }
             }
-
-            //显示
-            pictureBox.Image = bitmap.Clone() as Image;
         }
 
         private void applyDithering()
         {
             if (bitmap == null) { return; }
+            bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);//翻转
             if (nearestColorToolStripMenuItem.Checked){
                 downGrade();
             } else if (orderedDitheringToolStripMenuItem.Checked){
@@ -565,6 +557,7 @@ namespace Image2Schematic
             } else if (errorDiffusionDitheringToolStripMenuItem.Checked){
                 floydSteinbergDithering();
             }
+            bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);//翻转回来
         }
 
         private int getNearestColor(int R,int G,int B)
