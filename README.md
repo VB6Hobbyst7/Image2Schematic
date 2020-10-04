@@ -2,6 +2,7 @@
 # Image2Schematic C#重制版
 Image2Schematic是一款可以将大多数图片转换为Schematic(MCEdit导出文件)的软件。它源于[0xAA55](https://www.0xaa55.com/) VB 开发开源的 [MapPaintGen](https://www.0xaa55.com/thread-2035-1-1.html)，它还有"凹凸调色板"的伪立体模式。
 ![Image2Schematic.png](https://i.loli.net/2020/10/04/UcAHs39bqQBjWwp.png)
+_图片较大,MCEdit显示会压制_
 ## 运行环境
   - 足够的内存大小和硬盘大小
   最大时候占用内存大约为
